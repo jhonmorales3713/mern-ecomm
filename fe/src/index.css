@@ -22,6 +22,9 @@ header a {
 .rating span {
   color: #f6841f;
 }
+.img-large {
+  max-width: 100%;
+}
 main {
   flex: 1;
 }
@@ -36,6 +39,9 @@ main {
 }
 .btn-add-to-cart {
   margin-right: 10px;
+}
+.btn-add-to-cart2 {
+  margin-bottom: 10px;
 }
 .product {
   border: 1px solid #f6841f;
