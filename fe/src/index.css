@@ -19,6 +19,9 @@ header a {
 .body-content {
   height: 100vh;
 }
+.rating span {
+  color: #f6841f;
+}
 main {
   flex: 1;
 }
@@ -26,6 +29,13 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+.btn-primary {
+  background-color: #f6841f;
+  border: none;
+}
+.btn-add-to-cart {
+  margin-right: 10px;
 }
 .product {
   border: 1px solid #f6841f;
