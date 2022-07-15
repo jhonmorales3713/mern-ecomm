@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useReducer } from 'react';
+import { useContext, useEffect, useReducer } from 'react';
 import { useParams } from 'react-router-dom';
 import { Row, Col, ListGroup, Card, Badge, Button } from 'react-bootstrap';
 import logger from 'use-reducer-logger';
@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { getError } from '../components/utils';
+import { Store } from '../Store';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -29,6 +30,14 @@ function ProductScreen() {
     loading: true,
     error: '',
   });
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const addToCartHandler = () => {
+    console.log('SDSD');
+    ctxDispatch({
+      type: 'ADD_CART_ITEM',
+      payload: { ...product, quantity: 1 },
+    });
+  };
   // const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchD = async () => {
@@ -98,7 +107,11 @@ function ProductScreen() {
                 {product.countInStock > 0 && (
                   <ListGroup.Item>
                     <div className="d-grid">
-                      <Button variant="primary" className="btn-add-to-cart2">
+                      <Button
+                        onClick={addToCartHandler}
+                        variant="primary"
+                        className="btn-add-to-cart2"
+                      >
                         Add To Cart
                       </Button>
                       <Button variant="primary" className="btn-buy-now">
