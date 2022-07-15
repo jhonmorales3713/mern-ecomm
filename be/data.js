@@ -1,6 +1,7 @@
 const data = {
   products: [
     {
+      _id: '1',
       name: 'Nike Shirt 1',
       tag: 'nike-shirt-1',
       category: 'tops',
@@ -13,6 +14,7 @@ const data = {
       description: 'hulaan mo 1',
     },
     {
+      _id: '2',
       name: 'Nike Shirt 2',
       tag: 'nike-shirt-2',
       category: 'tops',
@@ -25,6 +27,7 @@ const data = {
       description: 'hulaan mo 2',
     },
     {
+      _id: '3',
       name: 'Nike Shirt 3',
       tag: 'nike-shirt-3',
       category: 'tops',
@@ -37,6 +40,7 @@ const data = {
       description: 'hulaan mo 3',
     },
     {
+      _id: '4',
       name: 'Nike Pants 1',
       tag: 'nike-pants-1',
       category: 'tops',
@@ -49,6 +53,7 @@ const data = {
       description: 'hulaan mo Pants 1',
     },
     {
+      _id: '4',
       name: 'Nike Pants 2',
       tag: 'nike-pants-2',
       category: 'tops',
@@ -61,6 +66,7 @@ const data = {
       description: 'hulaan mo Pants 2',
     },
     {
+      _id: '5',
       name: 'Nike Pants 3',
       tag: 'nike-pants-3',
       category: 'tops',
