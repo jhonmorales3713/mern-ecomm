@@ -57,6 +57,9 @@ main {
 .img-thumbnail {
   height: 50px;
 }
+.sm-container {
+  max-width: 600px;
+}
 /* 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
