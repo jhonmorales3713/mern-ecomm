@@ -1,16 +1,37 @@
+import axios from 'axios';
 import { useContext } from 'react';
 import { Button, Card, Col, ListGroup, Row } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import MessageBox from '../components/MessageBox';
 import { Store } from '../Store';
 
 export default function CartScreen() {
+  const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
     cart: { cartItems },
   } = state;
-  console.log(cartItems);
+  const updateCartHandler = async (item, quantity) => {
+    const { data } = await axios.get(`/api/products/${item._id}`);
+    if (data.countInStock < quantity) {
+      window.alert('This product is out of stock');
+      return;
+    }
+    ctxDispatch({
+      type: 'ADD_CART_ITEM',
+      payload: { ...item, quantity },
+    });
+  };
+  const checkoutHandler = () => {
+    navigate('/signin?redirect=/shipping');
+  };
+  const removeItemHandler = async (item) => {
+    ctxDispatch({
+      type: 'REMOVE_ITEM',
+      payload: { item },
+    });
+  };
   return (
     <div>
       <Helmet>
@@ -38,17 +59,32 @@ export default function CartScreen() {
                       <Link to={`/product/${item.tag}`}>{item.name}</Link>
                     </Col>
                     <Col md={3}>
-                      <Button variant="light" disabled={item.quantity === 1}>
+                      <Button
+                        variant="light"
+                        disabled={item.quantity === 1}
+                        onClick={() =>
+                          updateCartHandler(item, item.quantity - 1)
+                        }
+                      >
                         <i className="fas fa-minus-circle"></i>
                       </Button>{' '}
                       <span>{item.quantity}</span>{' '}
-                      <Button variant="light" disabled={item.quantity === 1}>
+                      <Button
+                        variant="light"
+                        disabled={item.quantity === item.countInStock}
+                        onClick={() =>
+                          updateCartHandler(item, item.quantity + 1)
+                        }
+                      >
                         <i className="fas fa-plus-circle"></i>
                       </Button>{' '}
                     </Col>
                     <Col md={3}>${item.price}</Col>
                     <Col md={2}>
-                      <Button variant="light">
+                      <Button
+                        variant="light"
+                        onClick={() => removeItemHandler(item)}
+                      >
                         <i className="fas fa-trash"></i>
                       </Button>
                     </Col>
@@ -74,6 +110,7 @@ export default function CartScreen() {
                     <Button
                       type="button"
                       variant="primary"
+                      onClick={checkoutHandler}
                       disabled={cartItems.length === 0}
                     >
                       Proceed To Checkout

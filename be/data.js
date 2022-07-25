@@ -7,7 +7,7 @@ const data = {
       category: 'tops',
       image: '/images/p1.jpg', //679px x 829px
       price: 500,
-      countInStock: 0,
+      countInStock: 1,
       brand: 'Nike',
       rating: 1.2,
       numReviews: 10,

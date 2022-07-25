@@ -54,6 +54,9 @@ main {
 .product-info {
   padding: 1rem;
 }
+.img-thumbnail {
+  height: 50px;
+}
 /* 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
